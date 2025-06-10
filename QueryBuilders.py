@@ -3,7 +3,7 @@ import sqlalchemy
 from sqlalchemy import text
 from sqlalchemy import create_engine,MetaData, Table, Column, Integer, String, TIMESTAMP,Numeric
 
-engine = sqlalchemy.create_engine( 'postgresql://postgres:Bierbrauer1!@localhost:5433/mimic', echo = True)
+engine = sqlalchemy.create_engine( 'postgresql://postgres:passwort@localhost:5433/mimic', echo = True)
 
 with engine.begin() as conn:
 # Verbindung zur Datenbank herstellen
