@@ -8,8 +8,8 @@ engine = sqlalchemy.create_engine( 'postgresql://postgres:Bierbrauer1!@localhost
 with engine.begin() as conn:
 # Verbindung zur Datenbank herstellen
 # Dictionary-Tabelle in einen DataFrame laden
-    conn.execute(text("CREATE SCHEMA bronze;"))
-    metadata = MetaData()
+    conn.execute(text("CREATE SCHEMA IF NOT EXISTS bronze;"))
+    metadata = MetaData("bronze")
 
     bronze = Table(
         'collection_disease ', metadata,
