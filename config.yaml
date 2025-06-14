@@ -1,0 +1,21 @@
+database:
+  host: localhost # Umgebungsvariable DB_HOST, Standardwert "localhost"
+  port: 5433 # Umgebungsvariable DB_PORT oder Standardwert 5432
+  user: postgres # Muss als Umgebungsvariable gesetzt werden
+  password: passwort # Muss als Umgebungsvariable gesetzt werden
+  database: mimic
+  schema_silver: silver
+  schema_gold: gold
+  table_silver: standardized_parameters
+  table_gold_sofa: gold_sofa
+  table_gold_gcs: gold_gcs
+
+parameters_gcs:
+  - concept_id: 223900 # Verbal Response
+    imputation: forwarding # Werte aus vorherigen Zeitfenstern übernehmen
+
+  - concept_id: 223901 # Motor Response
+    imputation:  forwarding # Werte aus vorherigen Zeitfenstern übernehmen
+
+  - concept_id: 220739 # Pupil size and shape normal
+    imputation: forwarding # Werte aus vorherigen Zeitfenstern übernehmen
