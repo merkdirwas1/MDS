@@ -7,6 +7,7 @@ from sklearn.dummy import DummyRegressor
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
+import joblib
 
 # 1. Daten laden
 df = pd.read_csv("gcs_features.csv")
@@ -40,6 +41,7 @@ for target in targets:
     # 7. BASELINE-Modell: Mittelwert-Prediction
     baseline = DummyRegressor(strategy="mean")
     baseline.fit(X_train, y_train)
+    joblib.dump(baseline, f"baseline_model_{target}.pkl")
     y_base = baseline.predict(X_test)
 
     base_mse = mean_squared_error(y_test, y_base)
@@ -60,6 +62,7 @@ for target in targets:
 
     model.compile(optimizer='adam', loss='mse')
     model.fit(X_train, y_train, epochs=50, batch_size=16, verbose=0)
+    model.save(f"dl_model_{target}.h5")
 
     # 9. Evaluation
     y_pred = model.predict(X_test).flatten()
